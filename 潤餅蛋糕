@@ -1,0 +1,16 @@
+while True:
+    try:
+        year = int(input("輸入一個年份："))
+        if (year % 4) == 0:
+            if (year % 100) == 0:
+                if (year % 400) == 0:
+                    print("%s年是世紀閏年" % year)
+                else:
+                    print("%s 年是平年"% year)
+            else:
+                print("%s年是普通閏年")
+        else:
+            print("%s年是平年"%year)
+        break
+    except ValueError:
+        print("ERROR-404")
