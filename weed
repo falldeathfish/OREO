@@ -1,1 +1,19 @@
-
+start_year = int(input("輸入起始年:"))
+end_year = int(input("輸入結束年:"))
+leap_year_list = [ ]  # 閏年
+less_year_list = [ ]  # 世紀閏年
+for year in range(start_year,end_year+1):
+    try:
+        if (year % 4) == 0:
+            if (year % 100) == 0:
+                if (year % 400) == 0:
+                    # 世紀閏年
+                    less_year_list.append(year)
+                    leap_year_list.append(year)
+            else:
+                # 普通閏年
+                leap_year_list.append(year)
+    except ValueError:
+        print("ERROR-404")
+print("%s-%s之間的世紀閏年:%s"%(start_year,end_year, less_year_list))
+print("%s-%s之間的閏年:%s"%(start_year,end_year,leap_year_list) )
