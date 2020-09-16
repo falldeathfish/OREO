@@ -1,6 +1,6 @@
 while True:
     try:
-        year = int(input("輸入一個年份："))
+        year = int(input("輸入年份："))
         if (year % 4) == 0:
             if (year % 100) == 0:
                 if (year % 400) == 0:
