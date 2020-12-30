@@ -1,50 +1,47 @@
-# While 迴圈
-```
-while 條件判斷式:
-#如果條件判斷式成立，就執行這裡面的敘述
-```
-例1：
-```
-i=1
-while i < 3:
-print(i)
-i+=1
+import tkinter as tk
+import math
 
-print("abc")
-```
-問題：while迴圈的執行範圍為何？何時跳回重覆?
-注意避免"無窮迴圈"的產生
+window = tk.Tk()
+window.title('BMI App')
+window.geometry('800x600')
+window.configure(background='white')
 
-#for迴圈
-```
-for 變數 in 序列項目：
-  執行敘述
-  
-range(起始值,終止值,增減值)
-```
-例2
-```
-for x in range(1,10):
-  print (x)
-```
+def calculate_bmi_number():
+    height = float(height_entry.get())
+    weight = float(weight_entry.get())
+    bmi_value = round(weight / math.pow(height, 2), 2)
+    result = '你的 BMI 指數為：{} {}'.format(bmi_value, get_bmi_status_description(bmi_value))
+    result_label.configure(text=result)
 
-#巢狀迴圈
-```
-k =1
-h = 1
-while k <6 :
-  while h < 6:
-    print (k,end=(''))
-    h+=1
-  k+=1
-  h =1
-  print()
+def get_bmi_status_description(bmi_value):
+    if bmi_value < 18.5:
+        return '體重過輕囉，多吃點！'
+    elif bmi_value >= 18.5 and bmi_value < 24:
+        return '體重剛剛好，繼續保持！'
+    elif bmi_value >= 24 :
+        return '體重有點過重囉，少吃多運動！'
 
-```
-```
-for i in range(9,1,-3):
-  print("")
-  for j in range(1,10):
-    print(i,end=(''))
+header_label = tk.Label(window, text='BMI 計算器')
+header_label.pack()
 
-```
+height_frame = tk.Frame(window)
+height_frame.pack(side=tk.TOP)
+height_label = tk.Label(height_frame, text='身高（m）')
+height_label.pack(side=tk.LEFT)
+height_entry = tk.Entry(height_frame)
+height_entry.pack(side=tk.LEFT)
+
+weight_frame = tk.Frame(window)
+weight_frame.pack(side=tk.TOP)
+weight_label = tk.Label(weight_frame, text='體重（kg）')
+weight_label.pack(side=tk.LEFT)
+weight_entry = tk.Entry(weight_frame)
+weight_entry.pack(side=tk.LEFT)
+
+result_label = tk.Label(window)
+result_label.pack()
+
+calculate_btn = tk.Button(window, text='馬上計算', command=calculate_bmi_number)
+calculate_btn.pack()
+
+window.mainloop()
